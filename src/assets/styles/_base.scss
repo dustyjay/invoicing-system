@@ -1,0 +1,93 @@
+* {
+  // transition: all 200ms;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, sans-serif;
+  background: var(--white);
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.5;
+  color: var(--grey-4);
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+html,
+body {
+  font-size: 14px;
+
+  @include tablet {
+    font-size: 16px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  color: var(--grey-5);
+}
+
+h1 {
+  font-size: 3.325rem;
+
+  @include mobile-only {
+    font-size: 3rem;
+  }
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.325rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.825rem;
+}
+
+small {
+  font-size: 85%;
+}
+
+button {
+  transition: 200ms linear;
+  &:hover {
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.app-container {
+  width: 85%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+}

@@ -1,0 +1,133 @@
+.preview {
+  &-box {
+    box-shadow: -12px 45px 30px 0px rgba(0, 0, 0, 0.15);
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  &-top {
+    padding: 5rem;
+    min-height: 600px;
+  }
+
+  &-bottom {
+    padding: 4rem 5rem;
+    background-color: var(--purple-1);
+  }
+
+  &-data {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    &--self {
+      text-align: right;
+      padding-left: 1.5rem;
+    }
+  }
+
+  &__name {
+    font-size: 24px;
+    margin-bottom: 0.5rem;
+  }
+
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1rem;
+    p:not(.preview-footer__thanks) {
+      color: var(--grey-3);
+      font-size: 0.75rem;
+    }
+    &__thanks {
+      padding-right: 10px;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.table {
+  overflow-x: auto;
+  margin-left: -0.5rem;
+  margin-right: -0.5rem;
+
+  &-box {
+    min-width: 600px;
+  }
+
+  &-head,
+  &-row {
+    display: flex;
+    width: 100%;
+    & > div {
+      padding: 0.5rem;
+      text-overflow: ellipsis;
+      overflow-x: hidden;
+    }
+  }
+
+  &-desc {
+    width: 65%;
+  }
+
+  &-price {
+    width: 10%;
+    text-align: center;
+  }
+
+  &-qty {
+    width: 10%;
+    text-align: center;
+  }
+
+  &-subtotal {
+    width: 15%;
+    text-align: center;
+  }
+
+  &-bank {
+    width: 35%;
+  }
+
+  &-due {
+    width: 35%;
+  }
+
+  &-total {
+    width: 30%;
+    text-align: right;
+  }
+
+  &-head {
+    font-weight: lighter;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1.02px;
+
+    &__hr {
+      width: calc(100% - 1rem);
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &-row {
+    margin-bottom: 1rem;
+    .table {
+      &-subtotal {
+        color: var(--purple-3);
+      }
+      &-due {
+        font-size: 2.5rem;
+        line-height: 1;
+      }
+      &-total {
+        font-size: 2.5rem;
+        line-height: 1;
+        color: var(--purple-3);
+      }
+    }
+  }
+}
