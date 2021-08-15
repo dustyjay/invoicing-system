@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import FormInput from '../shared/Input';
-import { formatInvoiceNumber, userInfo } from '../shared/invoices';
+import { formatInvoiceNumber } from '../helpers';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 

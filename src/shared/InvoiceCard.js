@@ -1,6 +1,6 @@
 import React from 'react';
 import MoreIcon from '../assets/images/icons/more.svg';
-import { formatDate } from './invoices';
+import { formatDate } from '../helpers';
 
 const InvoiceCard = ({
   clientName,
@@ -29,9 +29,9 @@ const InvoiceCard = ({
           <p>Date Issued: {formatDate(dateIssued)}</p>
           <p>Date Due: {formatDate(dueDate) || '--'}</p>
         </div>
-        <div class="dropdown">
+        <div className="dropdown">
           <button
-            class="dropdown-toggle"
+            className="dropdown-toggle"
             type="button"
             id="dropdownMenuButton"
             data-toggle="dropdown"
@@ -40,15 +40,15 @@ const InvoiceCard = ({
           >
             <img src={MoreIcon} alt="show options" />
           </button>
-          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <button class="dropdown-item" onClick={onView}>
-              View
-            </button>
-            <button class="dropdown-item" onClick={onEdit}>
+          <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button className="dropdown-item" onClick={onEdit}>
               Edit
             </button>
-            <div class="dropdown-divider"></div>
-            <button class="dropdown-item delete" onClick={onDelete}>
+            <button className="dropdown-item" onClick={onView}>
+              View
+            </button>
+            <div className="dropdown-divider"></div>
+            <button className="dropdown-item delete" onClick={onDelete}>
               Delete
             </button>
           </div>

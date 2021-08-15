@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import InvoiceCard from '../shared/InvoiceCard';
-import { CONSTANTS, getStorageItem, setStorageItem } from '../shared/invoices';
+import { CONSTANTS, getStorageItem, setStorageItem } from '../helpers';
 import AddIcon from '../assets/images/icons/plus-white.png';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import UserIcon from '../assets/images/icons/user.svg';
@@ -25,7 +25,7 @@ const InvoiceListing = () => {
     const allInvoices = [...invoices];
     allInvoices.splice(index, 1);
     setInvoices(allInvoices);
-    setStorageItem(CONSTANTS.INVOICES, invoices);
+    setStorageItem(CONSTANTS.INVOICES, allInvoices);
   };
 
   const handleOnView = index => {

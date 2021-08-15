@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  formatCurrency,
-  formatDate,
-  formatInvoiceNumber
-} from '../shared/invoices';
+import { formatCurrency, formatDate, formatInvoiceNumber } from '../helpers';
 
 const InvoicePreview = ({ invoice, index }) => {
   const getTaxRate = () => {

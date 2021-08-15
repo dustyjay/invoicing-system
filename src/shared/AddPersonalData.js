@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import CloseBtnIcon from '../assets/images/icons/close-btn.png';
 import FormInput from './Input';
-import { CONSTANTS, getStorageItem, setStorageItem } from './invoices';
+import { CONSTANTS, getStorageItem, setStorageItem } from '../helpers';
 
 Modal.setAppElement('#root');
 

@@ -6,7 +6,7 @@ import {
   getStorageItem,
   removeStorageItem,
   setStorageItem
-} from '../shared/invoices';
+} from '../helpers';
 import InvoicePreview from './InvoicePreview';
 import SearchIcon from '../assets/images/icons/search-icon.png';
 import EditIcon from '../assets/images/icons/edit.png';
@@ -43,13 +43,14 @@ const SingleInvoice = () => {
     setInvoice(invoice);
     setInvoiceIndex(index);
     removeStorageItem(CONSTANTS.SHOW_PREVIEW);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     const allInvoices = getStorageItem(CONSTANTS.INVOICES);
     allInvoices[invoiceIndex - 1] = invoice;
     setStorageItem(CONSTANTS.INVOICES, allInvoices);
-  }, [invoice]);
+  }, [invoice, invoiceIndex]);
 
   const handleOnEdit = newValue => {
     setInvoice(newValue);
