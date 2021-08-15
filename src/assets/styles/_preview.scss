@@ -3,16 +3,22 @@
     box-shadow: -12px 45px 30px 0px rgba(0, 0, 0, 0.15);
     margin-top: 2rem;
     margin-bottom: 4rem;
+    overflow-x: auto;
   }
 
   &-top {
     padding: 5rem;
     min-height: 600px;
+    min-width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   &-bottom {
-    padding: 4rem 5rem;
+    padding: 2rem 5rem 4rem;
     background-color: var(--purple-1);
+    min-width: 700px;
   }
 
   &-data {
@@ -37,25 +43,50 @@
     align-items: flex-end;
     margin-top: 1rem;
     p:not(.preview-footer__thanks) {
-      color: var(--grey-3);
-      font-size: 0.75rem;
+      font-size: 0.85rem;
     }
     &__thanks {
       padding-right: 10px;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+    }
+  }
+
+  &-meta {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+
+    &__box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 1rem;
+      width: 65%;
+      margin-left: auto;
+    }
+
+    &__title {
+      font-weight: lighter;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 1.02px;
+      margin-right: 0.5rem;
+    }
+
+    &__total {
+      color: var(--red-3);
+      font-size: 1.25rem;
+      padding: 0.5rem;
     }
   }
 }
 
 .table {
-  overflow-x: auto;
-  margin-left: -0.5rem;
-  margin-right: -0.5rem;
-
-  &-box {
-    min-width: 600px;
-  }
-
   &-head,
   &-row {
     display: flex;
@@ -68,11 +99,11 @@
   }
 
   &-desc {
-    width: 65%;
+    width: 60%;
   }
 
   &-price {
-    width: 10%;
+    width: 15%;
     text-align: center;
   }
 
@@ -128,6 +159,42 @@
         line-height: 1;
         color: var(--purple-3);
       }
+    }
+  }
+
+  &-form {
+    min-width: 700px;
+
+    &__box {
+      overflow: auto;
+    }
+
+    .table-desc {
+      width: 50%;
+    }
+
+    .table-price {
+      width: 15%;
+      text-align: center;
+    }
+
+    .table-qty {
+      width: 10%;
+      text-align: center;
+    }
+
+    .table-subtotal {
+      width: 15%;
+      text-align: center;
+    }
+
+    .table-actions {
+      width: 10%;
+      display: flex;
+    }
+
+    .table-row {
+      align-items: center;
     }
   }
 }

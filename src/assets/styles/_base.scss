@@ -16,6 +16,7 @@ body {
   font-style: normal;
   line-height: 1.5;
   color: var(--grey-4);
+  background-color: #fcfbfd;
 
   &.no-scroll {
     overflow: hidden;
@@ -38,7 +39,6 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  letter-spacing: 1.3px;
   color: var(--grey-5);
 }
 
@@ -90,4 +90,8 @@ button {
   margin-right: auto;
   padding-top: 3rem;
   padding-bottom: 2rem;
+}
+
+.d-flex {
+  display: flex;
 }

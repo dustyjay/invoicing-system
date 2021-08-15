@@ -1,113 +1,212 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { invoices } from '../shared/invoices';
+import {
+  CONSTANTS,
+  formatInvoiceNumber,
+  getStorageItem,
+  removeStorageItem,
+  setStorageItem
+} from '../shared/invoices';
+import InvoicePreview from './InvoicePreview';
+import SearchIcon from '../assets/images/icons/search-icon.png';
+import EditIcon from '../assets/images/icons/edit.png';
+import AddIcon from '../assets/images/icons/plus-white.png';
+import DeleteIcon from '../assets/images/icons/close-btn.png';
+import BackIcon from '../assets/images/icons/left-arrow.svg';
+import InvoiceForm from './InvoiceForm';
+import AddNewItem from '../shared/AddNewItem';
 
 const getInvoice = () => {
   const link = window.location.href.split('/');
-  const index = link[link.length - 1];
+  const index = +link[link.length - 1];
+  const invoices = getStorageItem(CONSTANTS.INVOICES);
   const { length } = invoices;
-  if (isNaN(index) || +index > length) return -1;
-  return invoices[index - 1];
+  if (isNaN(index) || index > length) return { index: -1 };
+  return { index, invoice: invoices[index - 1] };
 };
 
 const SingleInvoice = () => {
   const history = useHistory();
+  const [showPreview, setShowPreview] = useState(false);
   const [invoice, setInvoice] = useState({});
+  const [invoiceIndex, setInvoiceIndex] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [activeItemIndex, setActiveItemIndex] = useState(null);
+
   useEffect(() => {
-    const inv = getInvoice();
-    if (inv === -1) {
+    const { index, invoice } = getInvoice();
+    if (index === -1) {
       history.goBack();
       return;
     }
-    setInvoice(inv);
+    setShowPreview(getStorageItem(CONSTANTS.SHOW_PREVIEW));
+    setInvoice(invoice);
+    setInvoiceIndex(index);
+    removeStorageItem(CONSTANTS.SHOW_PREVIEW);
   }, []);
+
+  useEffect(() => {
+    const allInvoices = getStorageItem(CONSTANTS.INVOICES);
+    allInvoices[invoiceIndex - 1] = invoice;
+    setStorageItem(CONSTANTS.INVOICES, allInvoices);
+  }, [invoice]);
+
+  const handleOnEdit = newValue => {
+    setInvoice(newValue);
+  };
+
+  const closeModal = item => {
+    setShowModal(false);
+    if (item) {
+      const items = [...getInvoiceItems()];
+      if (activeItemIndex || activeItemIndex === 0) {
+        items[activeItemIndex] = item;
+      } else {
+        items.push(item);
+      }
+      setInvoice({ ...invoice, items });
+    }
+    setActiveItemIndex(null);
+  };
+
+  const getInvoiceItems = () => {
+    return invoice.items || [];
+  };
+
+  const handleEditItem = index => {
+    setActiveItemIndex(index);
+    setShowModal(true);
+  };
+
+  const handleDeleteItem = index => {
+    const items = getInvoiceItems();
+    items.splice(index, 1);
+    setInvoice({ ...invoice, items });
+  };
+
+  const handleGoBack = () => {
+    history.goBack();
+  };
+
   return (
     <div className="invoice">
-      <section>
-        <h4>Preview</h4>
-        <div className="preview-box">
-          <div className="preview-top">
-            <div className="preview-data">
-              <div className="preview-data__client">
-                <p className="preview__name">Client Name</p>
-                <p>
-                  Date Issued: <strong>04 May, 2021</strong>
-                </p>
-                <p>
-                  Invoice Number: <strong>#2394</strong>
-                </p>
-              </div>
-              <div className="preview-data--self">
-                <p>Your Name</p>
-                <p>Address</p>
-                <p>Town, City</p>
-                <p>Postcode</p>
-              </div>
-            </div>
-            <div className="table-box">
-              <div className="table">
-                <div className="table-head">
-                  <div className="table-desc">Product Name</div>
-                  <div className="table-price">Price</div>
-                  <div className="table-qty">Qty</div>
-                  <div className="table-subtotal">Subtotal</div>
-                </div>
-                <hr className="table-head__hr" />
-                <div className="table-body">
-                  <div className="table-row">
-                    <div className="table-desc">
-                      Frontend web swidfvjhnpaerhvg caeru g bnaeriu hgciuwertb
-                      cgheauirghquicghr reqg fyer
-                    </div>
-                    <div className="table-price">$3000</div>
-                    <div className="table-qty">2</div>
-                    <div className="table-subtotal">$6000</div>
-                  </div>
-                </div>
-                <div className="table-row">
-                  <div className="table-desc">
-                    hv9iuaehrgiuaehgiorubhaeti hgioae hvriosrhetioghqoi nrfi jr
-                    giohreiog hioeqhrg kljhurtigh wo vhoierh ogqhioe
-                  </div>
-                  <div className="table-price">$10000</div>
-                  <div className="table-qty">4</div>
-                  <div className="table-subtotal">$40000</div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="preview-bottom">
-            <div className="table-box">
-              <div className="table">
-                <div className="table-head">
-                  <div className="table-bank">Bank Info</div>
-                  <div className="table-due">Due By</div>
-                  <div className="table-total">Total Due</div>
-                </div>
-                <hr className="table-head__hr" />
-                <div className="table-body">
-                  <div className="table-row">
-                    <div className="table-bank">
-                      <p>
-                        Account No: <strong>0256541816</strong>
-                      </p>
-                      <p>
-                        Sort Code: <strong>01457</strong>
-                      </p>
-                    </div>
-                    <div className="table-due">18th May '21</div>
-                    <div className="table-total">$6000</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="preview-footer">
-              <p className="preview-footer__thanks">❤️ Thank you!</p>
-              <p>name@email.com | +44 452 656 633 | website.com</p>
-            </div>
-          </div>
+      <div className="invoice__list--title">
+        <div className="invoice__list--back">
+          <button className="fab fab--back" onClick={() => handleGoBack()}>
+            <img src={BackIcon} alt="Go back" />
+          </button>
+          <h2>
+            Invoice&nbsp;
+            {showPreview ? 'Preview' : `#${formatInvoiceNumber(invoiceIndex)}`}
+          </h2>
         </div>
-      </section>
+        <div className="fab-box">
+          {showPreview ? (
+            <button
+              className="fab fab--edit"
+              onClick={() => setShowPreview(false)}
+            >
+              <img src={EditIcon} alt="Add new invoice" />
+              <span>Edit</span>
+            </button>
+          ) : (
+            <React.Fragment>
+              {getInvoiceItems().length > 0 && (
+                <button
+                  className="fab fab--add"
+                  onClick={() => setShowModal(true)}
+                >
+                  <img src={AddIcon} alt="Add Invoice Item" />
+                  <span>Add Item</span>
+                </button>
+              )}
+              <button
+                className="fab fab--edit"
+                onClick={() => setShowPreview(true)}
+              >
+                <img src={SearchIcon} alt="Preview invoice" />
+                <span>Preview</span>
+              </button>
+            </React.Fragment>
+          )}
+        </div>
+      </div>
+      {showPreview ? (
+        <InvoicePreview invoice={invoice} index={invoiceIndex} />
+      ) : (
+        <React.Fragment>
+          <InvoiceForm
+            invoice={invoice}
+            onEdit={handleOnEdit}
+            index={invoiceIndex}
+          />
+          <section>
+            {!getInvoiceItems().length ? (
+              <div className="invoice-item__empty">
+                <i>
+                  <img src={SearchIcon} alt="Empty product items" />
+                </i>
+                <p>This invoice has no product items</p>
+                <button
+                  className="fab fab--add"
+                  onClick={() => setShowModal(true)}
+                >
+                  <span>Add Item</span>
+                </button>
+              </div>
+            ) : (
+              <div className="table-form__box">
+                <div className="table table-form">
+                  <div className="table-head">
+                    <div className="table-desc">Product Name</div>
+                    <div className="table-price">Price</div>
+                    <div className="table-qty">Qty</div>
+                    <div className="table-subtotal">Subtotal</div>
+                    <div className="table-actions">Actions</div>
+                  </div>
+                  <hr className="table-head__hr" />
+                  <div className="table-body">
+                    {getInvoiceItems().map(
+                      ({ name, amount, quantity }, index) => (
+                        <div className="table-row" key={index}>
+                          <div className="table-desc">{name}</div>
+                          <div className="table-price">${amount}</div>
+                          <div className="table-qty">{quantity}</div>
+                          <div className="table-subtotal">
+                            ${amount * quantity}
+                          </div>
+                          <div className="table-actions">
+                            <button
+                              type="button"
+                              className="fab fab--edit fab--icon fab--small"
+                              onClick={() => handleEditItem(index)}
+                            >
+                              <img src={EditIcon} alt="Edit product item" />
+                            </button>
+                            <button
+                              type="button"
+                              className="fab fab--delete fab--icon fab--small"
+                              onClick={() => handleDeleteItem(index)}
+                            >
+                              <img src={DeleteIcon} alt="Delete product item" />
+                            </button>
+                          </div>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+              </div>
+            )}
+          </section>
+        </React.Fragment>
+      )}
+
+      <AddNewItem
+        show={showModal}
+        closeModal={closeModal}
+        item={getInvoiceItems()[activeItemIndex]}
+      />
     </div>
   );
 };
