@@ -3,16 +3,16 @@
   align-items: center;
   justify-content: center;
   background-color: var(--purple-2);
-  border: none;
-  padding: 0.75rem 1rem;
+  border: 1px solid var(--purple-2);
+  padding: 0.5rem 1rem;
   border-radius: 50px;
   color: var(--white);
   font-size: 1.125rem;
 
   img {
-    margin-right: 1rem;
-    width: 20px;
-    height: 20px;
+    margin-right: 0.5rem;
+    width: 16px;
+    height: 16px;
     object-fit: contain;
     object-position: center;
   }
@@ -25,31 +25,6 @@
     display: flex;
   }
 
-  @include mobile-only {
-    &-box {
-      position: fixed;
-      bottom: 10vh;
-      right: 2rem;
-      flex-direction: column;
-    }
-
-    padding: 1rem;
-    box-shadow: 0 3px 16px rgba(0, 0, 0, 0.25);
-
-    span {
-      display: none;
-    }
-
-    img {
-      margin-right: 0;
-    }
-
-    & + .fab {
-      margin: 0;
-      margin-top: 1rem;
-    }
-  }
-
   &--add {
     background-color: var(--purple-2);
     &:hover {
@@ -57,13 +32,14 @@
     }
     &:disabled {
       background-color: var(--grey-3);
+      border-color: var(--grey-3);
     }
   }
 
   &--edit {
     background-color: var(--white);
-    color: var(--blue-3);
-    border: 1px solid var(--blue-3);
+    color: var(--purple-2);
+    border-color: var(--purple-2);
     &:hover {
       background-color: var(--grey-1);
     }
@@ -72,7 +48,7 @@
   &--delete {
     background-color: var(--red-2);
     color: var(--white);
-    border: 1px solid var(--red-2);
+    border-color: var(--red-2);
     &:hover {
       background-color: var(--red-1);
     }
@@ -80,37 +56,41 @@
 
   &--back {
     background-color: var(--grey-1);
+    border-color: var(--grey-1);
     color: var(--grey-3);
     border-radius: 10px;
     margin-right: 1rem;
     border: none;
+    padding: 0.75rem;
 
     img {
       margin: 0;
     }
+
     &:hover {
       background-color: var(--grey-2);
     }
 
     &.user {
       border-radius: 50%;
+      padding: 0.75rem;
 
       img {
-        width: 24px;
-        height: 24px;
+        width: 20px;
+        height: 20px;
       }
     }
   }
 
   &--small {
     img {
-      width: 14px;
-      height: 14px;
+      width: 12px;
+      height: 12px;
     }
   }
 
   &--icon {
-    padding: 0.75rem;
+    padding: 0.5rem;
     img {
       margin: 0;
     }
@@ -119,18 +99,47 @@
   &--close {
     background-color: var(--grey-1);
     color: var(--grey-3);
-    border-radius: 10px;
-    border: none;
+    border-radius: 50%;
+    border-color: var(--grey-1);
     padding: 0.5rem;
     img {
       margin: 0;
-    }
-    img {
       width: 14px;
       height: 14px;
     }
     &:hover {
       background-color: var(--grey-2);
+      border-color: var(--grey-3);
+    }
+  }
+
+  @include mobile-only {
+    &:not(.show-mobile) {
+      padding: 1rem;
+      box-shadow: 0 3px 16px rgba(0, 0, 0, 0.25);
+      span {
+        display: none;
+      }
+
+      img {
+        margin-right: 0;
+      }
+    }
+
+    &:not(.show-mobile) + .fab {
+      margin: 0;
+      margin-top: 1rem;
+    }
+    &-box {
+      position: fixed;
+      bottom: 10vh;
+      right: 2rem;
+      flex-direction: column;
+      z-index: 10000;
+    }
+
+    &--add {
+      box-shadow: none;
     }
   }
 }
@@ -166,16 +175,8 @@
     outline: none;
   }
 
-  &__error {
-    border-color: var(--red-2);
-
-    &:focus {
-      border-color: var(--red-2);
-
-      & ~ .input__placeholder {
-        color: var(--red-2);
-      }
-    }
+  &__box {
+    margin-bottom: 1.5rem;
   }
 }
 
@@ -207,7 +208,8 @@
   &-group {
     display: flex;
     justify-content: space-between;
-    margin-top: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
     & > div {
       flex: 0 0 49%;
     }
@@ -218,10 +220,16 @@
         margin-bottom: 1rem;
       }
     }
+
+    @include tablet {
+      flex-direction: row;
+      margin-top: 1.5rem;
+    }
   }
 
   &-buttons {
     justify-content: flex-end;
+    flex-direction: row;
   }
 }
 
@@ -241,6 +249,7 @@ OVERRIDING STYLES
     padding-bottom: 1.5rem !important;
     text-align: center;
     transition: 100ms linear;
+    min-width: 100px;
 
     &--selected {
       background-color: var(--purple-2) !important;
@@ -252,6 +261,8 @@ OVERRIDING STYLES
       display: flex;
       margin-bottom: 2rem !important;
       border: none !important;
+      overflow-x: auto;
+      overflow-y: hidden;
     }
   }
 }

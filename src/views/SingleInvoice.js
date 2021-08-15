@@ -90,15 +90,18 @@ const SingleInvoice = () => {
 
   return (
     <div className="invoice">
-      <div className="invoice__list--title">
+      <div className="invoice__title">
         <div className="invoice__list--back">
-          <button className="fab fab--back" onClick={() => handleGoBack()}>
+          <button
+            className="fab fab--back show-mobile"
+            onClick={() => handleGoBack()}
+          >
             <img src={BackIcon} alt="Go back" />
           </button>
-          <h2>
+          <h1>
             Invoice&nbsp;
             {showPreview ? 'Preview' : `#${formatInvoiceNumber(invoiceIndex)}`}
-          </h2>
+          </h1>
         </div>
         <div className="fab-box">
           {showPreview ? (
@@ -148,7 +151,7 @@ const SingleInvoice = () => {
                 </i>
                 <p>This invoice has no product items</p>
                 <button
-                  className="fab fab--add"
+                  className="fab fab--add show-mobile"
                   onClick={() => setShowModal(true)}
                 >
                   <span>Add Item</span>
@@ -178,14 +181,14 @@ const SingleInvoice = () => {
                           <div className="table-actions">
                             <button
                               type="button"
-                              className="fab fab--edit fab--icon fab--small"
+                              className="fab fab--edit fab--icon fab--small show-mobile"
                               onClick={() => handleEditItem(index)}
                             >
                               <img src={EditIcon} alt="Edit product item" />
                             </button>
                             <button
                               type="button"
-                              className="fab fab--delete fab--icon fab--small"
+                              className="fab fab--delete fab--icon fab--small show-mobile"
                               onClick={() => handleDeleteItem(index)}
                             >
                               <img src={DeleteIcon} alt="Delete product item" />

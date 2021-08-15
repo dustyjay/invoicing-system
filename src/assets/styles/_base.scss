@@ -40,22 +40,23 @@ h5,
 h6 {
   font-weight: bold;
   color: var(--grey-5);
+  margin: 0;
 }
 
 h1 {
-  font-size: 3.325rem;
+  font-size: 1.5rem;
 
-  @include mobile-only {
-    font-size: 3rem;
+  @include tablet {
+    font-size: 1.5rem;
   }
 }
 
-h2 {
-  font-size: 2rem;
-}
-
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+
+  @include tablet {
+    font-size: 1.5rem;
+  }
 }
 
 h4 {
@@ -68,6 +69,10 @@ h5 {
 
 h6 {
   font-size: 0.825rem;
+}
+
+p {
+  margin-bottom: 0.25rem;
 }
 
 small {
@@ -88,8 +93,12 @@ button {
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 3rem;
+  padding-top: 1.5rem;
   padding-bottom: 2rem;
+
+  @include tablet {
+    padding-top: 3rem;
+  }
 }
 
 .d-flex {

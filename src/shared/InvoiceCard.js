@@ -53,8 +53,6 @@ const InvoiceCard = ({
             </button>
           </div>
         </div>
-        {/* <i className="invoice-card__enter"> */}
-        {/* </i> */}
       </div>
     </div>
   );

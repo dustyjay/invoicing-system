@@ -57,11 +57,11 @@ const InvoiceListing = () => {
         show={showUserData}
         closeModal={() => setShowUserData(false)}
       />
-      <div className="invoice__list--title">
-        <h2>Invoices</h2>
+      <div className="invoice__title">
+        <h1>📝 Invoices</h1>
         <div className="d-flex">
           <button
-            className="fab fab--back user"
+            className="fab fab--back user show-mobile"
             onClick={() => setShowUserData(true)}
           >
             <img src={UserIcon} alt="view your data" />
@@ -70,7 +70,7 @@ const InvoiceListing = () => {
             <div className="fab-box">
               <button className="fab fab--add" onClick={addNewInvoice}>
                 <img src={AddIcon} alt="Add new invoice" />
-                <span>Add New</span>
+                <span className="show-mobile">Add New</span>
               </button>
             </div>
           )}

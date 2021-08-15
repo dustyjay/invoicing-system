@@ -10,7 +10,8 @@ const customStyles = {
     backgroundColor: 'rgba(33,33,33,0.4)',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 10001
   },
   content: {
     width: '85%',
@@ -18,8 +19,10 @@ const customStyles = {
     margin: '0 auto',
     position: 'unset',
     height: 'fit-content',
+    maxHeight: '85vh',
     boxShadow: '0px 10px 10px rgba(33, 33, 33, 0.2)',
-    padding: '2rem'
+    padding: '2rem',
+    paddingTop: 0
   }
 };
 
@@ -61,9 +64,12 @@ const AddNewItem = ({ show, closeModal, item }) => {
       style={customStyles}
       contentLabel="Add New Product"
     >
-      <div className="invoice__list--title">
+      <div className="invoice__title modal-title">
         <h4>{isEdit ? 'Edit' : 'Add'} Product Item</h4>
-        <button className="fab fab--close" onClick={() => closeModal()}>
+        <button
+          className="fab fab--close show-mobile"
+          onClick={() => closeModal()}
+        >
           <img src={CloseBtnIcon} alt="close modal" />
         </button>
       </div>
@@ -96,14 +102,14 @@ const AddNewItem = ({ show, closeModal, item }) => {
         </div>
         <div className="form-group form-buttons">
           <button
-            className="fab fab--edit"
+            className="fab fab--edit show-mobile"
             type="button"
             onClick={() => closeModal()}
           >
             Cancel
           </button>
           <button
-            className="fab fab--add"
+            className="fab fab--add show-mobile"
             type="submit"
             disabled={!isFormValid()}
           >

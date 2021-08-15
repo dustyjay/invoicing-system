@@ -7,18 +7,26 @@
   }
 
   &-top {
-    padding: 5rem;
+    padding: 3rem 2.5rem;
     min-height: 600px;
     min-width: 700px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @include tablet {
+      padding: 5rem;
+    }
   }
 
   &-bottom {
-    padding: 2rem 5rem 4rem;
+    padding: 1rem 2.5rem 3rem;
     background-color: var(--purple-1);
     min-width: 700px;
+
+    @include tablet {
+      padding: 2rem 5rem 4rem;
+    }
   }
 
   &-data {
@@ -75,6 +83,7 @@
       text-transform: uppercase;
       font-size: 0.75rem;
       letter-spacing: 1.02px;
+      padding: 0 0.5rem;
       margin-right: 0.5rem;
     }
 

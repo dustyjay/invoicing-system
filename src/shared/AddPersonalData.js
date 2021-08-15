@@ -11,7 +11,8 @@ const customStyles = {
     backgroundColor: 'rgba(33,33,33,0.4)',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    zIndex: 10001
   },
   content: {
     width: '85%',
@@ -21,7 +22,8 @@ const customStyles = {
     height: 'fit-content',
     maxHeight: '85vh',
     boxShadow: '0px 10px 10px rgba(33, 33, 33, 0.2)',
-    padding: '2rem'
+    padding: '2rem',
+    paddingTop: 0
   }
 };
 
@@ -30,6 +32,11 @@ const FORM_FIELDS = {
     type: 'text',
     placeholder: 'Enter your name',
     label: 'Name'
+  },
+  email: {
+    type: 'email',
+    placeholder: 'Enter your email address',
+    label: 'Email'
   },
   phone: {
     type: 'tel',
@@ -98,15 +105,18 @@ const AddPersonalData = ({ show, closeModal }) => {
       style={customStyles}
       contentLabel="Add Personal data"
     >
-      <div className="invoice__list--title">
+      <div className="invoice__title modal-title">
         <h4>Your Personal Details</h4>
-        <button className="fab fab--close" onClick={() => closeModal()}>
+        <button
+          className="fab fab--close show-mobile"
+          onClick={() => closeModal()}
+        >
           <img src={CloseBtnIcon} alt="close modal" />
         </button>
       </div>
       <form onSubmit={handleSubmit}>
         <p>
-          Set your personal information here to save time when creating a new
+          Set your personal information here to save time while creating a new
           invoice
         </p>
         <div className="form-group user">
@@ -125,10 +135,14 @@ const AddPersonalData = ({ show, closeModal }) => {
           )}
         </div>
         <div className="form-group form-buttons">
-          <button className="fab fab--edit" type="button" onClick={closeModal}>
+          <button
+            className="fab fab--edit show-mobile"
+            type="button"
+            onClick={closeModal}
+          >
             Cancel
           </button>
-          <button className="fab fab--add" type="submit">
+          <button className="fab fab--add show-mobile" type="submit">
             Save
           </button>
         </div>
