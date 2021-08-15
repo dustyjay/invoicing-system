@@ -16,7 +16,7 @@ body {
   font-style: normal;
   line-height: 1.5;
   color: var(--grey-4);
-  background-color: #fcfbfd;
+  background-color: var(--body-bg);
 
   &.no-scroll {
     overflow: hidden;
@@ -93,12 +93,8 @@ button {
   width: 85%;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 1.5rem;
+  padding-top: 0;
   padding-bottom: 2rem;
-
-  @include tablet {
-    padding-top: 3rem;
-  }
 }
 
 .d-flex {

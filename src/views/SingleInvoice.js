@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import html2pdf from 'html-to-pdf-js';
 import {
   CONSTANTS,
   formatInvoiceNumber,
@@ -12,6 +13,7 @@ import SearchIcon from '../assets/images/icons/search-icon.png';
 import EditIcon from '../assets/images/icons/edit.png';
 import AddIcon from '../assets/images/icons/plus-white.png';
 import DeleteIcon from '../assets/images/icons/close-btn.png';
+import PrinterIcon from '../assets/images/icons/printer-blue.png';
 import BackIcon from '../assets/images/icons/left-arrow.svg';
 import InvoiceForm from './InvoiceForm';
 import AddNewItem from '../shared/AddNewItem';
@@ -42,6 +44,13 @@ const SingleInvoice = () => {
     setShowPreview(getStorageItem(CONSTANTS.SHOW_PREVIEW));
     setInvoice(invoice);
     setInvoiceIndex(index);
+
+    // Print invoice if set from invoice listing page
+    if (getStorageItem(CONSTANTS.PRINT_ON_ENTER)) {
+      printInvoice(invoice);
+      removeStorageItem(CONSTANTS.PRINT_ON_ENTER);
+    }
+
     removeStorageItem(CONSTANTS.SHOW_PREVIEW);
     // eslint-disable-next-line
   }, []);
@@ -85,6 +94,21 @@ const SingleInvoice = () => {
     setInvoice({ ...invoice, items });
   };
 
+  const printInvoice = ({ clientName }) => {
+    setShowPreview(true);
+
+    setTimeout(() => {
+      const element = document.querySelector('.preview');
+      const filename = clientName || 'invoice';
+      const opt = {
+        filename,
+        html2canvas: { scale: 3 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }, 500);
+  };
+
   const handleGoBack = () => {
     history.goBack();
   };
@@ -115,15 +139,6 @@ const SingleInvoice = () => {
             </button>
           ) : (
             <React.Fragment>
-              {getInvoiceItems().length > 0 && (
-                <button
-                  className="fab fab--add"
-                  onClick={() => setShowModal(true)}
-                >
-                  <img src={AddIcon} alt="Add Invoice Item" />
-                  <span>Add Item</span>
-                </button>
-              )}
               <button
                 className="fab fab--edit"
                 onClick={() => setShowPreview(true)}
@@ -133,6 +148,13 @@ const SingleInvoice = () => {
               </button>
             </React.Fragment>
           )}
+          <button
+            className="fab fab--edit"
+            onClick={() => printInvoice(invoice)}
+          >
+            <img src={PrinterIcon} alt="Preview invoice" />
+            <span>Print</span>
+          </button>
         </div>
       </div>
       {showPreview ? (
@@ -145,7 +167,7 @@ const SingleInvoice = () => {
             index={invoiceIndex}
           />
           <section>
-            {!getInvoiceItems().length ? (
+            {getInvoiceItems().length === 0 ? (
               <div className="invoice-item__empty">
                 <i>
                   <img src={SearchIcon} alt="Empty product items" />
@@ -159,48 +181,62 @@ const SingleInvoice = () => {
                 </button>
               </div>
             ) : (
-              <div className="table-form__box">
-                <div className="table table-form">
-                  <div className="table-head">
-                    <div className="table-desc">Product Name</div>
-                    <div className="table-price">Price</div>
-                    <div className="table-qty">Qty</div>
-                    <div className="table-subtotal">Subtotal</div>
-                    <div className="table-actions">Actions</div>
-                  </div>
-                  <hr className="table-head__hr" />
-                  <div className="table-body">
-                    {getInvoiceItems().map(
-                      ({ name, amount, quantity }, index) => (
-                        <div className="table-row" key={index}>
-                          <div className="table-desc">{name}</div>
-                          <div className="table-price">${amount}</div>
-                          <div className="table-qty">{quantity}</div>
-                          <div className="table-subtotal">
-                            ${amount * quantity}
+              <React.Fragment>
+                <div className="table-form__box">
+                  <div className="table table-form">
+                    <div className="table-head">
+                      <div className="table-desc">Product Name</div>
+                      <div className="table-price">Price</div>
+                      <div className="table-qty">Qty</div>
+                      <div className="table-subtotal">Subtotal</div>
+                      <div className="table-actions">Actions</div>
+                    </div>
+                    <hr className="table-head__hr" />
+                    <div className="table-body">
+                      {getInvoiceItems().map(
+                        ({ name, amount, quantity }, index) => (
+                          <div className="table-row" key={index}>
+                            <div className="table-desc">{name}</div>
+                            <div className="table-price">${amount}</div>
+                            <div className="table-qty">{quantity}</div>
+                            <div className="table-subtotal">
+                              ${amount * quantity}
+                            </div>
+                            <div className="table-actions">
+                              <button
+                                type="button"
+                                className="fab fab--edit fab--icon fab--small show-mobile"
+                                onClick={() => handleEditItem(index)}
+                              >
+                                <img src={EditIcon} alt="Edit product item" />
+                              </button>
+                              <button
+                                type="button"
+                                className="fab fab--delete fab--icon fab--small show-mobile"
+                                onClick={() => handleDeleteItem(index)}
+                              >
+                                <img
+                                  src={DeleteIcon}
+                                  alt="Delete product item"
+                                />
+                              </button>
+                            </div>
                           </div>
-                          <div className="table-actions">
-                            <button
-                              type="button"
-                              className="fab fab--edit fab--icon fab--small show-mobile"
-                              onClick={() => handleEditItem(index)}
-                            >
-                              <img src={EditIcon} alt="Edit product item" />
-                            </button>
-                            <button
-                              type="button"
-                              className="fab fab--delete fab--icon fab--small show-mobile"
-                              onClick={() => handleDeleteItem(index)}
-                            >
-                              <img src={DeleteIcon} alt="Delete product item" />
-                            </button>
-                          </div>
-                        </div>
-                      )
-                    )}
+                        )
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
+                <div className="invoice__add">
+                  <button
+                    className="fab fab--add fab--small show-mobile"
+                    onClick={() => setShowModal(true)}
+                  >
+                    <img src={AddIcon} alt="Add Invoice Item" />
+                    <span>Add New</span>
+                  </button>
+                </div>
+              </React.Fragment>
             )}
           </section>
         </React.Fragment>

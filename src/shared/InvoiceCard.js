@@ -9,7 +9,8 @@ const InvoiceCard = ({
   items = [],
   onView,
   onEdit,
-  onDelete
+  onDelete,
+  onPrint
 }) => {
   return (
     <div className="invoice-card">
@@ -29,7 +30,7 @@ const InvoiceCard = ({
           <p>Date Issued: {formatDate(dateIssued)}</p>
           <p>Date Due: {formatDate(dueDate) || '--'}</p>
         </div>
-        <div className="dropdown">
+        <div className="dropleft">
           <button
             className="dropdown-toggle"
             type="button"
@@ -41,6 +42,10 @@ const InvoiceCard = ({
             <img src={MoreIcon} alt="show options" />
           </button>
           <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <button className="dropdown-item" onClick={onPrint}>
+              Print
+            </button>
+            <div className="dropdown-divider"></div>
             <button className="dropdown-item" onClick={onEdit}>
               Edit
             </button>

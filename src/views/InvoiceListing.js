@@ -33,6 +33,11 @@ const InvoiceListing = () => {
     goToInvoice(index);
   };
 
+  const handleOnPrint = index => {
+    setStorageItem(CONSTANTS.PRINT_ON_ENTER, true);
+    handleOnView(index);
+  };
+
   const addNewInvoice = () => {
     setStorageItem(CONSTANTS.INVOICES, [...invoices, getDefaultInvoice()]);
     goToInvoice(invoices.length + 1);
@@ -84,6 +89,7 @@ const InvoiceListing = () => {
               key={index}
               onEdit={() => goToInvoice(index + 1)}
               onView={() => handleOnView(index + 1)}
+              onPrint={() => handleOnPrint(index + 1)}
               onDelete={() => handleOnDelete(index)}
             />
           ))}

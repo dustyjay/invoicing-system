@@ -20,15 +20,21 @@
     align-items: center;
     margin-bottom: 2rem;
     font-size: 2rem;
+    position: sticky;
+    top: 0;
+    padding-top: 1.5rem;
+    padding-bottom: 0.5rem;
+    background-color: var(--body-bg);
+    z-index: 2;
 
     &.modal-title {
       align-items: flex-start;
-      position: sticky;
-      top: 0;
-      background-color: var(--white);
-      padding-top: 1.5rem;
-      padding-bottom: 0.5rem;
       margin-bottom: 1rem;
+      background-color: var(--white);
+    }
+
+    @include tablet {
+      padding-top: 3rem;
     }
   }
 
@@ -87,6 +93,12 @@
         margin-bottom: 0.5rem;
       }
     }
+  }
+
+  &__add {
+    float: right;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   &-form {

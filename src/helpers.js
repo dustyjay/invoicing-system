@@ -2,6 +2,7 @@ export const CONSTANTS = {
   INVOICES: 'invoices',
   SHOW_PREVIEW: 'show-preview',
   USER_DATA: 'user-data',
+  PRINT_ON_ENTER: 'print-invoice',
   INVOICE_NUMBER_LENGTH: 5
 };
 
