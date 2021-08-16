@@ -3,8 +3,6 @@ import Modal from 'react-modal';
 import CloseBtnIcon from '../assets/images/icons/close-btn.png';
 import FormInput from './Input';
 
-Modal.setAppElement('#root');
-
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(33,33,33,0.4)',
@@ -25,6 +23,8 @@ const customStyles = {
     paddingTop: 0
   }
 };
+
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const AddNewItem = ({ show, closeModal, item }) => {
   const [name, setName] = useState('');

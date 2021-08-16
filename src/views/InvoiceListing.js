@@ -69,7 +69,7 @@ const InvoiceListing = () => {
             className="fab fab--back user show-mobile"
             onClick={() => setShowUserData(true)}
           >
-            <img src={UserIcon} alt="view your data" />
+            <img src={UserIcon} alt="view user data" />
           </button>
           {invoices.length > 0 && (
             <div className="fab-box">
@@ -81,7 +81,7 @@ const InvoiceListing = () => {
           )}
         </div>
       </div>
-      {invoices.length ? (
+      {invoices.length > 0 ? (
         <div className="invoice__list">
           {invoices.map((el, index) => (
             <InvoiceCard

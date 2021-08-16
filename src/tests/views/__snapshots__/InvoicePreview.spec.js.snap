@@ -1,0 +1,274 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invoice Preview Invoice Form matches snapshot 1`] = `
+<div>
+  <section
+    class="preview"
+  >
+    <div
+      class="preview-box"
+    >
+      <div
+        class="preview-top"
+      >
+        <div>
+          <div
+            class="preview-data"
+          >
+            <div
+              class="preview-data__client"
+            >
+              <p
+                class="preview__name"
+              >
+                Jurassic Park
+              </p>
+              <p>
+                Date Issued: 
+                <strong>
+                  Sat May 24 2031
+                </strong>
+              </p>
+              <p>
+                Invoice Number: 
+                <strong>
+                  #
+                  00000
+                </strong>
+              </p>
+            </div>
+            <div
+              class="preview-data--self"
+            >
+              <p>
+                Jane Doe
+              </p>
+              <p>
+                4, Harold road
+              </p>
+              <p>
+                Mowe, 
+                Lagos
+              </p>
+              <p>
+                100010
+              </p>
+            </div>
+          </div>
+          <div>
+            <div
+              class="table"
+            >
+              <div
+                class="table-head"
+              >
+                <div
+                  class="table-desc"
+                >
+                  Product Name
+                </div>
+                <div
+                  class="table-price"
+                >
+                  Price
+                </div>
+                <div
+                  class="table-qty"
+                >
+                  Qty
+                </div>
+                <div
+                  class="table-subtotal"
+                >
+                  Subtotal
+                </div>
+              </div>
+              <hr
+                class="table-head__hr"
+              />
+              <div
+                class="table-body"
+              >
+                <div
+                  class="table-row items"
+                >
+                  <div
+                    class="table-desc"
+                  >
+                    Frontend Development
+                  </div>
+                  <div
+                    class="table-price"
+                  >
+                    $3,000.00
+                  </div>
+                  <div
+                    class="table-qty"
+                  >
+                    2
+                  </div>
+                  <div
+                    class="table-subtotal"
+                  >
+                    $6,000.00
+                  </div>
+                </div>
+                <div
+                  class="table-row items"
+                >
+                  <div
+                    class="table-desc"
+                  >
+                    Backend Development
+                  </div>
+                  <div
+                    class="table-price"
+                  >
+                    $10,000.00
+                  </div>
+                  <div
+                    class="table-qty"
+                  >
+                    4
+                  </div>
+                  <div
+                    class="table-subtotal"
+                  >
+                    $40,000.00
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="preview-bottom"
+      >
+        <div
+          class="preview-meta__box"
+        >
+          <div
+            class="preview-meta"
+          >
+            <div>
+              <p
+                class="preview-meta__title"
+              >
+                Discount:
+              </p>
+              <p
+                class="preview-meta__value"
+              >
+                0
+                %
+              </p>
+            </div>
+            <div
+              class="preview-meta__total"
+            >
+              $0.00
+            </div>
+          </div>
+          <div
+            class="preview-meta"
+          >
+            <div>
+              <p
+                class="preview-meta__title"
+              >
+                Tax rate:
+              </p>
+              <p
+                class="preview-meta__value"
+              >
+                0
+                %
+              </p>
+            </div>
+            <div
+              class="preview-meta__total"
+            >
+              $0.00
+            </div>
+          </div>
+        </div>
+        <div>
+          <div
+            class="table"
+          >
+            <div
+              class="table-head"
+            >
+              <div
+                class="table-bank"
+              >
+                Bank Info
+              </div>
+              <div
+                class="table-due"
+              >
+                Due By
+              </div>
+              <div
+                class="table-total"
+              >
+                Total Due
+              </div>
+            </div>
+            <hr
+              class="table-head__hr"
+            />
+            <div
+              class="table-body"
+            >
+              <div
+                class="table-row"
+              >
+                <div
+                  class="table-bank"
+                >
+                  <p>
+                    Account No: 
+                    <strong>
+                      3918789023
+                    </strong>
+                  </p>
+                  <p>
+                    Sort Code: 
+                    <strong>
+                      10482
+                    </strong>
+                  </p>
+                </div>
+                <div
+                  class="table-due"
+                >
+                  Sat Jun 14 2031
+                </div>
+                <div
+                  class="table-total"
+                >
+                  $46,000.00
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="preview-footer"
+        >
+          <p
+            class="preview-footer__thanks"
+          >
+            ❤️ Thank you!
+          </p>
+          <p>
+            jane@doe.me | +44959270823 | jane-doe.com
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+`;

@@ -65,7 +65,7 @@ const InvoicePreview = ({ invoice, index }) => {
                 <hr className="table-head__hr" />
                 <div className="table-body">
                   {invoice.items.map(({ name, amount, quantity }, index) => (
-                    <div className="table-row" key={index}>
+                    <div className="table-row items" key={index}>
                       <div className="table-desc">{name}</div>
                       <div className="table-price">
                         {formatCurrency(amount)}

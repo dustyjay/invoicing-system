@@ -284,6 +284,9 @@ OVERRIDING STYLES
     &::after {
       display: none !important;
     }
+    &:hover {
+      background-color: var(--purple-3);
+    }
   }
 
   &-menu {

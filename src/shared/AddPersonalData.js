@@ -4,8 +4,6 @@ import CloseBtnIcon from '../assets/images/icons/close-btn.png';
 import FormInput from './Input';
 import { CONSTANTS, getStorageItem, setStorageItem } from '../helpers';
 
-Modal.setAppElement('#root');
-
 const customStyles = {
   overlay: {
     backgroundColor: 'rgba(33,33,33,0.4)',
@@ -26,6 +24,8 @@ const customStyles = {
     paddingTop: 0
   }
 };
+
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const FORM_FIELDS = {
   name: {
@@ -116,7 +116,7 @@ const AddPersonalData = ({ show, closeModal }) => {
       </div>
       <form onSubmit={handleSubmit}>
         <p>
-          Set your personal information here to save time while creating a new
+          Add your personal information here to save time while creating a new
           invoice
         </p>
         <div className="form-group user">

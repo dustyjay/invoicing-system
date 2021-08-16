@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Invoice Listing Invoice matches snapshot 1`] = `
+<div>
+  <section>
+    <div
+      class="invoice__title"
+    >
+      <h1>
+        📝 Invoices
+      </h1>
+      <div
+        class="d-flex"
+      >
+        <button
+          class="fab fab--back user show-mobile"
+        >
+          <img
+            alt="view user data"
+            src="user.svg"
+          />
+        </button>
+      </div>
+    </div>
+    <div
+      class="invoice-item__empty"
+    >
+      <i>
+        <img
+          alt="Empty invoice list"
+          src="search-icon.png"
+        />
+      </i>
+      <p>
+        No invoices yet!
+      </p>
+      <button
+        class="fab fab--add"
+      >
+        <span>
+          Add New Invoice
+        </span>
+      </button>
+    </div>
+  </section>
+</div>
+`;
